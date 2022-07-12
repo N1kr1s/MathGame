@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css?family=Oxanium|PT+Mono&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: rgba(252, 48, 126, 0.546);
+  --select-color: rgba(252, 48, 126, 0.546);
+  --success: rgb(125, 250, 113);
+  --danger: rgb(248, 110, 110);
+}
+
+body {
+  margin: 0;
+  font-family: PT Mono, sans-serif;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fbfbfb;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ea89c3' fill-opacity='0.33'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.game-container {
+  border: 1px solid black;
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+  width: 530px;
+  height: 750px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.5);
+  user-select: none;
+  margin-top: 100px;
+}
+
+.header {
+  background: var(--primary-color);
+  color: white;
+  font-family: Oxanium, sans-serif;
+  font-size: 24px;
+  text-shadow: 1px 2px 2px black;
+  letter-spacing: 2px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  margin: 5px auto 10px;
+  height: 600px;
+}
+
+/* Splash Page -------------------- */
+input[type='radio'] {
+  opacity: 0;
+  width: 100%;
+  height: 75px;
+  position: relative;
+  top: -40px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.selection-container {
+  position: relative;
+  top: 65px;
+}
+
+.radio-container {
+  width: 90%;
+  height: 75px;
+  margin: 25px;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+label {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+}
+
+.selected-label {
+  background: var(--select-color);
+  color: white;
+}
+
+.best-score {
+  position: relative;
+  top: -100px;
+  left: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  max-width: fit-content;
+}
+
+.best-score span {
+  margin: 0;
+}
+
+.best-score span:last-child {
+  font-size: 24px;
+}
+
+.selection-footer {
+  top: 134px;
+}
+
+/* Game Page -------------------------- */
+.height-240 {
+  height: 240px;
+  width: 100%;
+}
+
+.height-500 {
+  height: 500px;
+  width: 100%;
+}
+
+.item-container {
+  height: 552px;
+  overflow-y: scroll;
+  position: relative;
+  -ms-overflow-style: none;
+}
+
+.item-container::-webkit-scrollbar {
+  display: none;
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  height: 80px;
+  margin: 0 50px;
+  user-select: none;
+}
+
+.finished > h1 {
+  opacity: 0.5;
+}
+
+.selected-item {
+  background: var(--select-color);
+  position: fixed;
+  top: 443px;
+  z-index: -1;
+  width: 529px;
+  height: 80px;
+}
+
+.item-footer,
+.selection-footer {
+  width: 100%;
+  height: 90px;
+  background: rgba(0, 0, 0, 0.604);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.item-footer {
+  top: 1px;
+}
+
+button {
+  cursor: pointer;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 25px;
+  font-family: Oxanium, sans-serif;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+button:hover {
+  filter: brightness(110%);
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+.wrong,
+.right {
+  width: 40%;
+}
+
+.wrong {
+  background: var(--danger);
+  margin-right: 25px;
+}
+
+.right {
+  background: var(--success);
+}
+
+.start,
+.play-again {
+  width: 90%;
+  background: var(--primary-color);
+}
+
+/* Countdown Page ---------------------- */
+.countdown {
+  margin-top: 45%;
+  font-size: 100px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Score Page ------------------------- */
+.score-container {
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-footer {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: -30px;
+}
+
+.title {
+  font-size: 45px;
+}
+
+.final-time {
+  font-size: 100px;
+  margin: 0;
+  color: var(--success);
+}
+
+.base-time {
+  margin-top: 100px;
+  margin-bottom: 0;
+}
+
+.penalty-time {
+  color: var(--danger);
+}
+
+@media (max-width: 1800px) {
+  .game-container {
+    margin-top: 35px;
+  }
+
+  .selected-item {
+    top: 380px;
+  }
+}
+
+@media (max-width: 500px) {
+  .game-container {
+    width: 100%;
+    margin-top: 0;
+    border: none;
+  }
+
+  .selected-item {
+    top: 345px;
+  }
+
+  .header {
+    font-size: 1.2rem;
+  }
+
+  .countdown {
+    margin-top: 60%;
+  }
+
+  .selection-container {
+    top: 100px;
+  }
+
+  .radio-container {
+    width: 93%;
+    margin: 15px;
+  }
+
+  label {
+    font-size: 1.7rem;
+  }
+
+  .best-score {
+    font-size: 1rem;
+    left: 245px;
+  }
+
+  .selection-footer {
+    top: 183px;
+  }
+}
+
+@media (max-width: 376px) {
+  .best-score {
+    left: 232px;
+  }
+}

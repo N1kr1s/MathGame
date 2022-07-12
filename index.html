@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Math Game</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="header">
+        <h1>Math Game</h1>
+      </div>
+
+      <div class="card" id="splash-page">
+        <form id="start-form">
+          <div class="selection-container">
+            <div class="radio-container">
+              <label for="value-99">10 Questions</label>
+              <input type="radio" id="value-10" name="questions" value="10" />
+              <span class="best-score">
+                <span>Best Score</span>
+                <span class="best-score-value"></span>
+              </span>
+            </div>
+            <div class="radio-container">
+              <label for="value-25">25 Questions</label>
+              <input type="radio" id="value-25" name="questions" value="25" />
+              <span class="best-score">
+                <span>Best Score</span>
+                <span class="best-score-value"></span>
+              </span>
+            </div>
+            <div class="radio-container">
+              <label for="value-50">50 Questions</label>
+              <input type="radio" id="value-50" name="questions" value="50" />
+              <span class="best-score">
+                <span>Best Score</span>
+                <span class="best-score-value"></span>
+              </span>
+            </div>
+            <div class="radio-container">
+              <label for="value-99">99 Questions</label>
+              <input type="radio" id="value-99" name="questions" value="99" />
+              <span class="best-score">
+                <span>Best Score</span>
+                <span class="best-score-value"></span>
+              </span>
+            </div>
+          </div>
+          <div class="selection-footer">
+            <button class="start">Start Round</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card" id="countdown-page" hidden="true">
+        <h1 class="countdown"></h1>
+      </div>
+
+      <div class="card" id="game-page" hidden>
+        <div class="item-container"></div>
+
+        <div class="item-footer">
+          <button class="wrong">Wrong</button>
+          <button class="right">Right</button>
+        </div>
+      </div>
+
+      <div class="card" id="score-page" hidden>
+        <div class="score-container">
+          <h1 class="title">Your Time</h1>
+          <h1 class="final-time"></h1>
+          <h1 class="base-time"></h1>
+          <h1 class="penalty-time"></h1>
+        </div>
+        <div class="score-footer">
+          <button class="play-again" hidden>Play Again</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
