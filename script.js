@@ -23,7 +23,12 @@ const playAgainBtn = document.querySelector('.play-again');
 let questionAmount = 0;
 let equationsArray = [];
 let playerGuessArray = [];
-let bestScoreArray = [];
+let bestScoreObj = {
+  value10: [],
+  value25: [],
+  value50: [],
+  value99: [],
+};
 // Game Page
 let firstNumber = 0;
 let secondNumber = 0;
@@ -39,30 +44,30 @@ let finalTimeDisplay = '0.0s';
 // Scroll
 let valueY = 0;
 
-const bestScoreLocalStorage = () => {
+const setLocalStorage = () => {
+  localStorage.setItem('bestScores', JSON.stringify(bestScoreObj));
+};
+
+const getLocalStorage = () => {
   if (localStorage.getItem('bestScores')) {
-    bestScoreArray = JSON.parse(localStorage.getItem('bestScores'));
-  } else {
-    bestScoreArray = [
-      {
-        questions: 10,
-        bestScore: finalTimeDisplay,
-      },
-      {
-        questions: 25,
-        bestScore: finalTimeDisplay,
-      },
-      {
-        questions: 50,
-        bestScore: finalTimeDisplay,
-      },
-      {
-        questions: 99,
-        bestScore: finalTimeDisplay,
-      },
-    ];
-    localStorage.setItem('bestScores', JSON.stringify(bestScoreArray));
+    bestScoreObj = JSON.parse(localStorage.getItem('bestScores'));
   }
+};
+
+const pushToBestScoreAndFilter = (val, bestTime) => {
+  if (questionAmount === val) {
+    bestScoreObj[`value${val}`].push(bestTime);
+    bestScoreObj[`value${val}`].sort((a, b) => a - b).splice(1, 1);
+  }
+};
+
+const setBestScoreObj = () => {
+  getLocalStorage();
+  pushToBestScoreAndFilter(10, finalTimeDisplay);
+  pushToBestScoreAndFilter(25, finalTimeDisplay);
+  pushToBestScoreAndFilter(50, finalTimeDisplay);
+  pushToBestScoreAndFilter(99, finalTimeDisplay);
+  setLocalStorage();
 };
 
 const showScorePage = () => {
@@ -77,14 +82,17 @@ const scoresToDom = () => {
   baseTime = timePlayed.toFixed(1);
   penaltyTime = penaltyTime.toFixed(1);
   baseTimeEl.innerText = `Base Time: ${baseTime}s`;
-  penaltyTimeEl.innerText = `Penalty: ${penaltyTime}s`;
+  penaltyTimeEl.innerText = `Penalty: +${penaltyTime}s`;
   finalTimeEl.innerText = `${finalTimeDisplay}s`;
   itemContainer.scrollTo({ top: 0, behavior: 'instant' });
+
+  setBestScoreObj();
+
   showScorePage();
 };
 
 const checkTime = (interval) => {
-  if (playerGuessArray.length === Number(questionAmount)) {
+  if (playerGuessArray.length === questionAmount) {
     clearInterval(interval);
     //Penalty time
     for (let i = 0; i < playerGuessArray.length; i++) {
@@ -227,7 +235,7 @@ const getRadioValue = () => {
       radioValue = radioInput.value;
     }
   });
-  return radioValue;
+  return Number(radioValue);
 };
 
 const selectQuestionAmount = (e) => {
@@ -251,6 +259,16 @@ const playAgain = () => {
   splashPage.hidden = false;
   playAgainBtn.hidden = true;
   valueY = 0;
+  setBestScore();
+};
+
+const setBestScore = () => {
+  getLocalStorage();
+  const { value10, value25, value50, value99 } = bestScoreObj;
+  bestScores[0].innerText = (value10[0] || '0.0') + 's';
+  bestScores[1].innerText = (value25[0] || '0.0') + 's';
+  bestScores[2].innerText = (value50[0] || '0.0') + 's';
+  bestScores[3].innerText = (value99[0] || '0.0') + 's';
 };
 
 // Listeners
@@ -274,4 +292,4 @@ startForm.addEventListener('submit', selectQuestionAmount);
 gamePage.addEventListener('click', startGameTimer);
 playAgainBtn.addEventListener('click', playAgain);
 
-bestScoreLocalStorage();
+setBestScore();
