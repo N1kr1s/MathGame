@@ -212,8 +212,10 @@ const countdownStart = () => {
   const interval = setInterval(() => {
     count--;
     if (count === 0) {
-      clearInterval(interval);
       countdown.innerText = 'GO!';
+    } else if (count === -1) {
+      clearInterval(interval);
+      showGamePage();
     } else {
       countdown.innerText = count;
     }
@@ -223,9 +225,8 @@ const countdownStart = () => {
 const showCountdown = () => {
   countdownPage.hidden = false;
   splashPage.hidden = true;
-  countdownStart();
   populateGamePage();
-  setTimeout(showGamePage, 4000);
+  countdownStart();
 };
 
 const getRadioValue = () => {
